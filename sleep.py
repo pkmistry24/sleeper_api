@@ -109,7 +109,7 @@ def generate_roasts(matchups):
                     {"role": "system", "content": "You are a witty and funny sports commentator. Do in the style of update like Chris Berman on ESPN."},
                     {"role": "user", "content": prompt}
                 ],
-                max_tokens=100,
+                max_tokens=200,
                 temperature=0.8
             )
             roast_text = response["choices"][0]["message"]["content"].strip()
@@ -146,11 +146,14 @@ if st.button("Generate Roasts"):
                 # Display roasts
                 for roast in roasts:
                     st.subheader(f"Matchup {roast['matchup_id']}")
-                    st.write(roast['roast'])
-
+                    
+                    # Render the roast with proper markdown handling
+                    formatted_roast = roast['roast'].replace('\n', '\n\n')  # Ensure readability
+                    st.markdown(formatted_roast, unsafe_allow_html=True)
+                
                     # Generate a random GIF query based on context
                     gif_query = random.choice(["nfl crowd cheering", "nfl celebration", "epic fail"])
                     gif_url = fetch_random_gif(gif_query)
-
+                
                     # Display the GIF
                     st.image(gif_url, use_container_width=True)
