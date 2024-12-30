@@ -93,7 +93,7 @@ def generate_roasts(matchups):
         try:
             # Generate the final roast response
             response = openai.ChatCompletion.create(
-                model="gpt-4",
+                model="gpt-4o",
                 messages=[
                     {"role": "system", "content": "You are a witty and funny sports commentator."},
                     {"role": "user", "content": prompt}
@@ -112,7 +112,9 @@ def generate_roasts(matchups):
 # Streamlit app interface
 st.title("Fantasy Football Matchup Roaster 🏈🔥")
 
-week = st.number_input("Enter Week Number:", min_value=1, max_value=17, step=1)
+# Dropdown for selecting the week
+week = st.selectbox("Select Week Number:", options=list(range(1, 18)))
+
 if st.button("Generate Roasts"):
     with st.spinner("Fetching data and generating roasts..."):
         # Fetch team mapping
