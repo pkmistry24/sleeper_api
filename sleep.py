@@ -106,7 +106,7 @@ def generate_roasts(matchups):
             response = openai.ChatCompletion.create(
                 model="gpt-4",
                 messages=[
-                    {"role": "system", "content": "You are a witty and funny sports commentator."},
+                    {"role": "system", "content": "You are a witty and funny sports commentator. Do in the style of update like Chris Berman on ESPN."},
                     {"role": "user", "content": prompt}
                 ],
                 max_tokens=100,
