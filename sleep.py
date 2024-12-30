@@ -71,7 +71,9 @@ def get_matchups_with_teams(week, team_mapping):
                 'team_name': team_name,
                 'points': matchup['points']
             })
-        return matchups_with_teams
+
+        # Sort matchups by matchup_id
+        return dict(sorted(matchups_with_teams.items()))
     except Exception as e:
         st.error(f"Error fetching matchups for week {week}: {e}")
         return {}
