@@ -93,7 +93,7 @@ def generate_roasts(matchups):
         try:
             # Generate the final roast response
             response = openai.ChatCompletion.create(
-                model="gpt-4o",
+                model="gpt-4",
                 messages=[
                     {"role": "system", "content": "You are a witty and funny sports commentator."},
                     {"role": "user", "content": prompt}
@@ -138,7 +138,7 @@ if st.button("Generate Roasts"):
                     st.write(roast['roast'])
 
                     # Generate a random GIF query based on context
-                    gif_query = random.choice(["nfl crowd cheering", "nfl celebration", "nfl epic fail"])
+                    gif_query = random.choice(["nfl crowd cheering", "nfl celebration", "epic fail"])
                     gif_url = fetch_random_gif(gif_query)
 
                     # Display the GIF
