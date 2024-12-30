@@ -136,7 +136,7 @@ if st.button("Generate Roasts"):
                     st.write(roast['roast'])
 
                     # Generate a random GIF query based on context
-                    gif_query = random.choice(["crowd cheering", "football celebration", "epic fail"])
+                    gif_query = random.choice(["nfl crowd cheering", "nfl celebration", "nfl epic fail"])
                     gif_url = fetch_random_gif(gif_query)
 
                     # Display the GIF
