@@ -153,4 +153,4 @@ if st.button("Generate Roasts"):
                     gif_url = fetch_random_gif(gif_query)
 
                     # Display the GIF
-                    st.image(gif_url, use_column_width=True)
+                    st.image(gif_url, use_container_width=True)
