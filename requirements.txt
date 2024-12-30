@@ -1,4 +1,4 @@
 streamlit==1.41.1
-openai==0.27.8
+openai==0.28
 requests==2.31.0
 git+https://github.com/djotaku/sleeper-api.git
