@@ -59,17 +59,28 @@ def get_team_mapping():
 def get_matchups_with_teams(week, team_mapping):
     try:
         matchups = get_matchups_for_week(league_id=LEAGUE_ID, week=week)
+        if not matchups or not isinstance(matchups, list):  # Handle empty or invalid response
+            st.error(f"No valid matchups returned for week {week}.")
+            return {}
+
         matchups_with_teams = {}
         for matchup in matchups:
-            matchup_id = matchup['matchup_id']
-            team_name = team_mapping.get(matchup['roster_id'], f"Team {matchup['roster_id']}")
+            # Safely handle missing or None values in matchup data
+            matchup_id = matchup.get('matchup_id')
+            roster_id = matchup.get('roster_id')
+            points = matchup.get('points', 0)  # Default points to 0 if missing
+
+            if matchup_id is None or roster_id is None:
+                continue  # Skip invalid entries
+
+            team_name = team_mapping.get(roster_id, f"Team {roster_id}")
 
             if matchup_id not in matchups_with_teams:
                 matchups_with_teams[matchup_id] = []
 
             matchups_with_teams[matchup_id].append({
                 'team_name': team_name,
-                'points': matchup['points']
+                'points': points
             })
 
         # Sort matchups by matchup_id
